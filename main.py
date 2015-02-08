@@ -152,7 +152,7 @@ class LoadDialog(FloatLayout):
 		super(LoadDialog, self).__init__(**kwargs)
 		self.drives_list.adapter.bind(on_selection_change=self.drive_selection_changed)
 	def get_win_drives(self):
-		if platform == 'win':
+		if platform() == 'win':
 			import win32api
 			drives = win32api.GetLogicalDriveStrings()
 			drives = drives.split('\000')[:-1]
