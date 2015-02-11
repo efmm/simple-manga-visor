@@ -20,7 +20,6 @@ from kivy.uix.popup import Popup
 import zipfile
 import shutil
 from kivy.base import EventLoop
-from kivy.utils import platform
 
 EventLoop.ensure_window()
 
@@ -147,22 +146,7 @@ class ImagenScreen_archivo(BoxLayout):
 class LoadDialog(FloatLayout):
 	load = ObjectProperty(None)
 	cancel = ObjectProperty(None)
-	filechooser = ObjectProperty(None)
-	def __init__(self, **kwargs):
-		super(LoadDialog, self).__init__(**kwargs)
-		self.drives_list.adapter.bind(on_selection_change=self.drive_selection_changed)
-	def get_win_drives(self):
-		if platform() == 'win':
-			import win32api
-			drives = win32api.GetLogicalDriveStrings()
-			drives = drives.split('\000')[:-1]
-			return drives
-		else:    
-			return []
-
-	def drive_selection_changed(self, *args):
-		selected_item = args[0].selection[0].text
-		self.filechooser.path = selected_item
+	path_dir = StringProperty("/")
 
 class MenuScreen(StackLayout):
 	

@@ -1,3 +1,0 @@
-title=Comic Manga viewer
-author=Erick Merino
-orientation=portrait

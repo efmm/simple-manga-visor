@@ -1,5 +1,3 @@
-#:import lv kivy.uix.listview
-#:import la kivy.adapters.listadapter
 <MenuScreen>
 	#orientation: "vertical"
 	Button:
@@ -16,23 +14,18 @@
 		on_release: exit()
 
 <LoadDialog>:
-	drives_list: drives_list
-	filechooser: filechooser
 	BoxLayout:
+		size: root.size
+		pos: root.pos
 		orientation: "vertical"
+		FileChooserListView:
+			path: root.path_dir
+			id: filechooser
 		BoxLayout:
-			ListView:
-				size_hint: 0.3, 1
-				id: drives_list
-				adapter:
-					la.ListAdapter(data=root.get_win_drives(), selection_mode='single', allow_empty_selection=False, cls=lv.ListItemButton)
-			FileChooserListView:
-				size_hint: 1, 1
-				id: filechooser
-		BoxLayout:
-			size_hint: 1, 0.1
+			size_hint_y: None
+			height: 30
 			Button:
-				text: 'cancel'
+				text: 'cancelar'
 				on_press: root.cancel()
 
 			Button:
